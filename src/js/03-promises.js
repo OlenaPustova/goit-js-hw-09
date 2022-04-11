@@ -21,9 +21,10 @@ function createPromise(position, delay) {
 
 function formSubmit(e) {
   e.preventDefault();
-  const amount = +formEl.elements.amount.value;
-  const firstDelay = +formEl.elements.delay.value;
-  const stepDelay = +formEl.elements.step.value;
+  console.log(e.currentTarget.elements.amount.value);
+  const amount = Number(e.currentTarget.elements.amount.value);
+  const firstDelay = Number(e.currentTarget.elements.delay.value);
+  const stepDelay = Number(e.currentTarget.elements.step.value);
 
   for (let i = 1; i <= amount; i++) {
     createPromise(i, firstDelay + (i - 1) * stepDelay)
@@ -34,4 +35,5 @@ function formSubmit(e) {
         Notiflix.Notify.failure(`Rejected promise ${position} in ${delay}ms`);
       });
   }
+  formEl.reset();
 }

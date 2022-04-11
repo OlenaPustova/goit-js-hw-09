@@ -27,7 +27,8 @@ const options = {
     if (Date.now() < selectedDatesMs) {
       buttonStartEl.disabled = false;
       buttonStartEl.addEventListener('click', () => {
-        clearInterval(timeinterval);
+        inputEl.disabled = true;
+        buttonStartEl.disabled = true;
         timeinterval = setInterval(() => {
           let timeToDate = convertMs(timeToDateMs);
           daysFieldEl.innerHTML = timeToDate.days;
@@ -37,6 +38,8 @@ const options = {
           timeToDateMs -= 1000;
           if (timeToDateMs <= 0) {
             clearInterval(timeinterval);
+            inputEl.disabled = false;
+            buttonStartEl.disabled = false;
           }
         }, 1000);
       });
